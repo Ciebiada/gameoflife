@@ -2,19 +2,19 @@
   (:require [gameoflife.core :refer :all]))
 
 (def esc
-    (char 27))
+  (char 27))
 
 (defn clear-screen []
-    (print (str esc "[2J" esc "[f")))
+  (print (str esc "[2J" esc "[f")))
 
 (defn print-cell [[x y]]
-    (print (str esc "[" y ";" x "f#")))
+  (print (str esc "[" y ";" x "f#")))
 
 (defn print-cells [cells]
-    (doseq [cell cells] (print-cell cell)))
+  (doseq [cell cells] (print-cell cell)))
 
 (def random-cells
-    (repeatedly (fn [] [(rand-int 80) (rand-int 20)])))
+  (repeatedly (fn [] [(rand-int 80) (rand-int 20)])))
 
 (defn main []
   (loop [board (next-generation (set (take 300 random-cells)))]
